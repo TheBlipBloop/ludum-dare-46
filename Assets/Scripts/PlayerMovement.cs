@@ -8,9 +8,11 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D body;
     public LayerMask floorLayer;
 
+
     [Header("Transforms")]
     public Transform arm;
     public Transform feetPoint;
+    public float feetSize = 0.6f;
 
     [Header("Movement")]
 
@@ -41,6 +43,11 @@ public class PlayerMovement : MonoBehaviour
 
 
         jumpMove = Input.GetKeyDown(KeyCode.W) && canJump();
+
+        if (jumpMove)
+        {
+            Jump();
+        }
     }
 
     bool canJump()
@@ -51,8 +58,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
 
-        Move(xMove, ref jumpMove, Time.fixedDeltaTime);
-        onGround = Physics2D.Raycast(feetPoint.position, feetPoint.up * -1, 0.5f, floorLayer.value);
+        Move(xMove, Time.fixedDeltaTime);
+        onGround = Physics2D.CircleCast(feetPoint.position, feetSize, feetPoint.up * -1, 0, floorLayer.value);
 
         if (!onGround)
         {
@@ -64,17 +71,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Move(float x, ref bool jump, float dt)
+    private void Jump()
+    {
+        body.velocity = new Vector2(body.velocity.x, jumpPower);
+    }
+
+    private void Move(float x, float dt)
     {
         body.velocity += new Vector2(x * moveSpeed * dt, 0);
 
-        if (jump)
+        if (Mathf.Abs(x) < 0.1f)
         {
-            body.velocity = new Vector2(body.velocity.x, jumpPower);
-            jump = false;
+            body.velocity = new Vector2(Mathf.MoveTowards(body.velocity.x, 0, moveSpeedDecayAmount * Time.fixedDeltaTime), body.velocity.y);
         }
 
-        body.velocity = new Vector2(Mathf.MoveTowards(body.velocity.x, 0, moveSpeedDecayAmount * Time.fixedDeltaTime), body.velocity.y);
         UpdateBodyClamp();
     }
 
