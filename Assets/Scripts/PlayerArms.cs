@@ -64,6 +64,8 @@ public class PlayerArms : MonoBehaviour
             return;
         }
 
+        if (!targetProp.CanGrab()) { return; }
+
         targetProp.DisableBody();
 
         targetProp.transform.parent = lockPoint;
@@ -84,14 +86,20 @@ public class PlayerArms : MonoBehaviour
         if (!currentProp) { return; }
         currentProp.transform.parent = null;
         currentProp.EnableBody();
-        currentProp.body.AddForce(lockPoint.up * 8 * Player.Scale(), ForceMode2D.Impulse);
+        currentProp.body.velocity = lockPoint.up * 8 * Player.Scale();
+        // currentProp.body.AddForce(lockPoint.up * 4 * Player.Scale(), ForceMode2D.Impulse);
         currentProp = null;
         player.body.AddForce(new Vector2(lockPoint.up.x * -3, lockPoint.up.y * -5) * Player.Scale(), ForceMode2D.Impulse);
+
+        if (player.canJump())
+        {
+            player.body.AddForce(new Vector2(0, 5f) * Player.Scale(), ForceMode2D.Impulse);
+        }
     }
 
     public Prop TryGrab()
     {
-        RaycastHit2D hit = Physics2D.CircleCast(lockPoint.position, Player.Scale() * 0.5f, lockPoint.up, Player.Scale() * 0.3f, propLayerMask.value);
+        RaycastHit2D hit = Physics2D.CircleCast(lockPoint.position, Player.Scale() * 0.35f, lockPoint.up, Player.Scale() * 0.3f, propLayerMask.value);
         GameObject hitObj = hit.collider ? hit.collider.gameObject : null;
 
         if (hitObj)

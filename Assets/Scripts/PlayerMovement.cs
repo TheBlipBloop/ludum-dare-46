@@ -77,10 +77,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // dustEmissionModule.rateOverDistanceMultiplier = Mathf.Lerp(dustEmissionModule.rateOverDistanceMultiplier, Mathf.Abs(xMoveInput) > 0.5f ? 1 : 0, Time.deltaTime);
-
+        Time.fixedDeltaTime = Time.smoothDeltaTime;
     }
 
-    bool canJump()
+    public bool canJump()
     {
         return curCoyoteTime <= maxCoyoteTime;
     }

@@ -15,5 +15,5 @@ public class Mice : MonoBehaviour
 
     public static Vector3 worldMousePosition() { return instance.self.ScreenToWorldPoint(screenMousePosition()); }
 
-    public static Vector3 screenMousePosition() { return Input.mousePosition; }
+    public static Vector2 screenMousePosition() { return Input.mousePosition; }
 }

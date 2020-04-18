@@ -41,7 +41,7 @@ public class Beast : MonoBehaviour
 
             foreach (var curProp in p)
             {
-                if (Meth.distanceSq(curProp.transform.position, currentMouth.point.position) < currentMouth.range * currentMouth.range)
+                if (Mathf.Sqrt(Meth.distanceSq(curProp.transform.position, currentMouth.point.position)) < transform.lossyScale.x * 1.28f)
                 {
                     ConsumeProp(curProp);
                 }
@@ -51,7 +51,8 @@ public class Beast : MonoBehaviour
 
     public void ConsumeProp(Prop prop)
     {
-        Player.instance.score += prop.body ? prop.body.mass : prop.rb_mass;
+        Player.instance.score += 1.35f * (prop.body ? prop.body.mass : prop.rb_mass);
+        Player.instance.collectedPeices++;
         Destroy(prop.gameObject);
     }
 }

@@ -7,7 +7,7 @@ public class PlayerCamera : MonoBehaviour
     public Player player;
 
     public Camera self;
-
+    Vector2 curPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +17,12 @@ public class PlayerCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.transform.position + new Vector3(0, 0, -10);
+        Vector2 screnMid = new Vector2(Screen.width / 2, Screen.height / 2);
+        Vector2 mouseOffset = (Mice.screenMousePosition() - screnMid) / 400 * Player.Scale();
+        curPosition = Vector2.Lerp(curPosition, player.transform.position, Time.deltaTime * 4);
 
-        self.orthographicSize = Mathf.Clamp(player.score, 1, 100);
+        transform.position = (Vector3)curPosition + (Vector3)mouseOffset + new Vector3(0, 0, -10);
+
+        self.orthographicSize = Mathf.Lerp(self.orthographicSize, Mathf.Clamp(Player.Scale() * 5f, 0.35f, 100f), Time.deltaTime * 0.4f);
     }
 }

@@ -1,16 +1,19 @@
 fileFormatVersion: 2
-guid: 9b76806053b751444b019ee397d98e5d
+guid: a54c108ead7fe26ada21b8e71ffaaa66
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -136845384287810812
-    second: PropsS_0
+      213: 8643589701423393501
+    second: Mouths_0
   - first:
-      213: -3108174599501802794
-    second: PropsS_1
+      213: 5503971591463607321
+    second: Mouths_1
   - first:
-      213: -6631346980465589999
-    second: PropsS_2
+      213: 3443975482307018304
+    second: Mouths_2
+  - first:
+      213: -5697861152728114256
+    second: Mouths_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -54,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -107,64 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PropsS_0
+      name: Mouths_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 6
-        height: 6
+        y: 12
+        width: 12
+        height: 11
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c49d01ac569e12af48580506e8a9aa44
-      internalID: -136845384287810812
+      spriteID: 81b3d9f939f93ed7c9ca5031d2282487
+      internalID: 8643589701423393501
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PropsS_1
+      name: Mouths_1
       rect:
         serializedVersion: 2
-        x: 6
-        y: 0
-        width: 6
-        height: 6
+        x: 1
+        y: 3
+        width: 11
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee1fc380d4b53adf89b9d391b5c03590
-      internalID: -3108174599501802794
+      spriteID: 6c3317e0c9a2f0f6dae045150cdbb6d3
+      internalID: 5503971591463607321
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PropsS_2
+      name: Mouths_2
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 2
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a6530abeb0de4cacb68a9d52b5bf7d3
+      internalID: 3443975482307018304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouths_3
       rect:
         serializedVersion: 2
         x: 12
-        y: 0
-        width: 6
-        height: 6
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        y: 12
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1f3f06e1a961910097d184ffcc21256
-      internalID: -6631346980465589999
+      spriteID: 3a2196d909ae87745ad285ec933ca4e0
+      internalID: -5697861152728114256
       vertices: []
       indices: 
       edges: []

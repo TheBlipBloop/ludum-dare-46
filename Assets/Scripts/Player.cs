@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float score;
+    public int collectedPeices;
 
     public PlayerMovement movement;
 
@@ -20,6 +21,8 @@ public class Player : MonoBehaviour
 
     float scale;
 
+    float lastScale;
+
     void OnEnable()
     {
         instance = this;
@@ -33,14 +36,22 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scale = Mathf.Clamp(score / 2f, 0.15f, 50f);
-        transform.localScale = new Vector3(scale * Mathf.Sign(transform.localScale.x), scale, 1);
+        scale = Mathf.Clamp(score * 1, 0.15f, 0.5f + (collectedPeices / 10f));
+
+        if (lastScale != scale)
+        {
+            lastScale = scale;
+            transform.localScale = new Vector3(scale * Mathf.Sign(transform.localScale.x), scale, 1);
+            transform.position += transform.up * scale / 2f;
+        }
 
         movement.jumpPower = startingJump * scale + 0.3f;
         movement.maxMoveSpeed = startingSpeedMax * scale;
         movement.moveSpeed = startingSpeed * scale;
         movement.feetSize = startingFeetSize * scale;
         movement.moveSpeedDecayAmount = startingSpeedDecay * scale;
+
+        Physics2D.gravity = new Vector2(0, -9.81f * scale);
     }
 
     public static float Score() { return instance.score; }
