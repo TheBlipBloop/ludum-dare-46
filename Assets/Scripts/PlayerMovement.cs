@@ -31,6 +31,11 @@ public class PlayerMovement : MonoBehaviour
     float xMove;
     bool jumpMove;
 
+    public KeyCode moveXPositive = KeyCode.D;
+    public KeyCode moveXNegitive = KeyCode.A;
+
+    public KeyCode jump = KeyCode.W;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,13 +44,29 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        xMove = (Input.GetKey(KeyCode.D) ? 1 : (Input.GetKey(KeyCode.A) ? -1 : 0)) * (canJump() ? 1 : airControl);
+        xMove = (Input.GetKey(moveXPositive) ? 1 : (Input.GetKey(moveXNegitive) ? -1 : 0)) * (canJump() ? 1 : airControl);
 
-
-        jumpMove = Input.GetKeyDown(KeyCode.W) && canJump();
-
-        if (jumpMove)
+        if (Input.GetKey(moveXNegitive) && Input.GetKey(moveXPositive))
         {
+
+        }
+        else
+        {
+            if (Input.GetKey(moveXNegitive))
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+
+            if (Input.GetKey(moveXPositive))
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+
+        }
+
+        if (Input.GetKeyDown(jump) && canJump())
+        {
+
             Jump();
         }
     }
@@ -57,8 +78,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-
         Move(xMove, Time.fixedDeltaTime);
+
         onGround = Physics2D.CircleCast(feetPoint.position, feetSize, feetPoint.up * -1, 0, floorLayer.value);
 
         if (!onGround)
@@ -73,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        curCoyoteTime = maxCoyoteTime + 1;
         body.velocity = new Vector2(body.velocity.x, jumpPower);
     }
 
