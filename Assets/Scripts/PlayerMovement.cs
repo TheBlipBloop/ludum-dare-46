@@ -14,12 +14,13 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
 
-    public AnimationCurve XAnimationCurve;
     /// <summary>
     /// 0 == no air control, 1 == full control
     /// </summary>
     public float airControl = 0.6f;
-    public float moveSpeed = 6;
+    public float moveSpeed = 12;
+    public float maxMoveSpeed = 6;
+    public float moveSpeedDecayAmount = 36;
     public float jumpPower = 3;
     public float maxCoyoteTime = 0.2f;
 
@@ -49,7 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move(xMove, ref jumpMove);
+
+        Move(xMove, ref jumpMove, Time.fixedDeltaTime);
         onGround = Physics2D.Raycast(feetPoint.position, feetPoint.up * -1, 0.5f, floorLayer.value);
 
         if (!onGround)
@@ -62,9 +64,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Move(float x, ref bool jump)
+    private void Move(float x, ref bool jump, float dt)
     {
-        body.velocity = new Vector2(x * moveSpeed, body.velocity.y);
+        body.velocity += new Vector2(x * moveSpeed * dt, 0);
 
         if (jump)
         {
@@ -72,5 +74,12 @@ public class PlayerMovement : MonoBehaviour
             jump = false;
         }
 
+        body.velocity = new Vector2(Mathf.MoveTowards(body.velocity.x, 0, moveSpeedDecayAmount * Time.fixedDeltaTime), body.velocity.y);
+        UpdateBodyClamp();
+    }
+
+    private void UpdateBodyClamp()
+    {
+        body.velocity = new Vector2(Mathf.Clamp(body.velocity.x, -maxMoveSpeed, maxMoveSpeed), body.velocity.y);
     }
 }
