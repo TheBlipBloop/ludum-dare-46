@@ -12,4 +12,15 @@ public class Meth
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         return rot_z;
     }
+
+    public static float vector2ToDegree(Vector2 vector2)
+    {
+        vector2.Normalize();
+        return Mathf.Atan2(vector2.y, vector2.x) * Mathf.Rad2Deg;
+    }
+
+    public static float distanceSq(Vector2 a, Vector2 b)
+    {
+        return (a - b).sqrMagnitude;
+    }
 }

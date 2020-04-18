@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerArms : MonoBehaviour
 {
+    public PlayerMovement player;
+
     public Prop currentProp;
 
     public Transform armParent;
@@ -14,19 +16,35 @@ public class PlayerArms : MonoBehaviour
 
     public LayerMask propLayerMask;
 
+    Vector2 draggedArmPosition;
+
     // Update is called once per frame
     void Update()
     {
-        armParent.eulerAngles = new Vector3(0, 0, Meth.pointToDegree(Mice.worldMousePosition(), armParent.position) + offset);
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Grab();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             UnGrab();
+        }
+
+        if (currentProp)
+        {
+            currentProp.transform.localPosition = Vector3.MoveTowards(currentProp.transform.localPosition, Vector3.zero, Time.deltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.Mouse1) || currentProp)
+        {
+            armParent.eulerAngles = new Vector3(0, 0, Meth.pointToDegree(Mice.worldMousePosition(), armParent.position) + offset);
+        }
+        else
+        {
+            float targetAngle = (((player.xMoveInput * -40) - 90 + offset) % 360);
+            armParent.eulerAngles = new Vector3(0, 0, Mathf.LerpAngle(armParent.eulerAngles.z, targetAngle, Time.deltaTime * 3));
         }
 
     }

@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     float curCoyoteTime = 0;
     bool onGround;
-    float xMove;
+    public float xMoveInput;
     bool jumpMove;
 
     public KeyCode moveXPositive = KeyCode.D;
@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        xMove = (Input.GetKey(moveXPositive) ? 1 : (Input.GetKey(moveXNegitive) ? -1 : 0)) * (canJump() ? 1 : airControl);
+        xMoveInput = (Input.GetKey(moveXPositive) ? 1 : (Input.GetKey(moveXNegitive) ? -1 : 0)) * (canJump() ? 1 : airControl);
 
         if (Input.GetKey(moveXNegitive) && Input.GetKey(moveXPositive))
         {
@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move(xMove, Time.fixedDeltaTime);
+        Move(xMoveInput, Time.fixedDeltaTime);
 
         onGround = Physics2D.CircleCast(feetPoint.position, feetSize, feetPoint.up * -1, 0, floorLayer.value);
 

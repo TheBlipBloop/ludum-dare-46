@@ -9,6 +9,14 @@ public class Prop : MonoBehaviour
     public float rb_drag;
     public float rb_angularDrag;
 
+    void OnEnable()
+    {
+        Beast.AddProp(this);
+    }
+    void OnDisable()
+    {
+        Beast.RemoveProp(this);
+    }
     public void DisableBody()
     {
         rb_mass = body.mass;
