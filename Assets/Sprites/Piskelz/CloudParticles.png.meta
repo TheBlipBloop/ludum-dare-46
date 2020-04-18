@@ -29,6 +29,9 @@ TextureImporter:
   - first:
       213: -7571003362375387919
     second: CloudParticles_8
+  - first:
+      213: 9146378428361151424
+    second: CloudParticles_9
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -152,7 +155,7 @@ TextureImporter:
         x: 1
         y: 57
         width: 6
-        height: 12
+        height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -309,6 +312,27 @@ TextureImporter:
       bones: []
       spriteID: 433fcb110ef00cf04b06df0821cdfe80
       internalID: -7571003362375387919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CloudParticles_9
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 65
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60a32380d51349aed807eb768c2e2a9b
+      internalID: 9146378428361151424
       vertices: []
       indices: 
       edges: []

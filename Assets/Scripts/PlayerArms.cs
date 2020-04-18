@@ -39,7 +39,8 @@ public class PlayerArms : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse1) || currentProp)
         {
-            armParent.eulerAngles = new Vector3(0, 0, Meth.pointToDegree(Mice.worldMousePosition(), armParent.position) + offset);
+            // armParent.eulerAngles = new Vector3(0, 0, Meth.pointToDegree(Mice.worldMousePosition(), armParent.position) + offset);
+            armParent.eulerAngles = new Vector3(0, 0, Mathf.LerpAngle(armParent.eulerAngles.z, Meth.pointToDegree(Mice.worldMousePosition(), armParent.position) + offset, Time.deltaTime * 6f));
         }
         else
         {

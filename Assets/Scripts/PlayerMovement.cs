@@ -36,10 +36,14 @@ public class PlayerMovement : MonoBehaviour
 
     public KeyCode jump = KeyCode.W;
 
+    // [Header("Effects")]
+    // public ParticleSystem movementDust;
+    // public ParticleSystem.EmissionModule dustEmissionModule;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        // dustEmissionModule = movementDust.emission;
     }
 
     void Update()
@@ -54,12 +58,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKey(moveXNegitive))
             {
-                transform.localScale = new Vector3(-1, 1, 1);
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
             }
 
             if (Input.GetKey(moveXPositive))
             {
-                transform.localScale = new Vector3(1, 1, 1);
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
             }
 
         }
@@ -69,6 +73,9 @@ public class PlayerMovement : MonoBehaviour
 
             Jump();
         }
+
+        // dustEmissionModule.rateOverDistanceMultiplier = Mathf.Lerp(dustEmissionModule.rateOverDistanceMultiplier, Mathf.Abs(xMoveInput) > 0.5f ? 1 : 0, Time.deltaTime);
+
     }
 
     bool canJump()
