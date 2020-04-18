@@ -19,8 +19,8 @@ public class Meth
         return Mathf.Atan2(vector2.y, vector2.x) * Mathf.Rad2Deg;
     }
 
-    public static float distanceSq(Vector2 a, Vector2 b)
+    public static float distance(Vector2 a, Vector2 b)
     {
-        return (a - b).sqrMagnitude;
+        return (a - b).magnitude;
     }
 }
