@@ -22,7 +22,7 @@ public class Prop : MonoBehaviour
         rb_mass = body.mass;
         rb_drag = body.drag;
         rb_angularDrag = body.angularDrag;
-        gameObject.layer = 10;
+        gameObject.layer = 11;
         Destroy(body);
     }
 

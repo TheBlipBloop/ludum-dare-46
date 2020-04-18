@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Transforms")]
     public Transform arm;
     public Transform feetPoint;
+
+    public CircleCollider2D feetCollider;
     public float feetSize = 0.6f;
 
     [Header("Movement")]
@@ -85,6 +87,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        feetSize = feetCollider.radius * Player.Scale() + 0.05f;
+
         Move(xMoveInput, Time.fixedDeltaTime);
 
         onGround = Physics2D.CircleCast(feetPoint.position, feetSize, feetPoint.up * -1, 0, floorLayer.value);

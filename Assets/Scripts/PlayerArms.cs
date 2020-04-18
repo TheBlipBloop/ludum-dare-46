@@ -14,9 +14,12 @@ public class PlayerArms : MonoBehaviour
 
     public Transform lockPoint;
 
+    public LayerMask grabbedPropLayerMask;
     public LayerMask propLayerMask;
 
     Vector2 draggedArmPosition;
+
+    Vector2 grabbedOffset;
 
     // Update is called once per frame
     void Update()
@@ -34,7 +37,9 @@ public class PlayerArms : MonoBehaviour
 
         if (currentProp)
         {
-            currentProp.transform.localPosition = Vector3.MoveTowards(currentProp.transform.localPosition, Vector3.zero, Time.deltaTime);
+            // currentProp.transform.localPosition = Vector3.MoveTowards(currentProp.transform.localPosition, Vector2.zero, Time.deltaTime);
+            // currentProp.transform.localPosition = Vector3.MoveTowards(currentProp.transform.localPosition, lockPoint.InverseTransformPoint(currentProp.transform.TransformPoint(grabbedOffset)), Time.deltaTime);
+
         }
 
         if (Input.GetKey(KeyCode.Mouse1) || currentProp)
@@ -63,6 +68,15 @@ public class PlayerArms : MonoBehaviour
 
         targetProp.transform.parent = lockPoint;
         currentProp = targetProp;
+
+        // RaycastHit2D hit = Physics2D.Raycast(armParent.position, lockPoint.up, 0.5f, grabbedPropLayerMask.value);
+        // if (hit.collider)
+        {
+            // lockPoint.position = hit.point;
+            // Debug.Log("HIT " + hit.collider.gameObject.name);
+            // Debug.DrawRay(hit.point, Vector2.up, Color.red, 15);
+            // grabbedOffset = currentProp.transform.InverseTransformPoint(hit.point);
+        }
     }
 
     public void UnGrab()
@@ -70,14 +84,14 @@ public class PlayerArms : MonoBehaviour
         if (!currentProp) { return; }
         currentProp.transform.parent = null;
         currentProp.EnableBody();
-        currentProp.body.AddForce(lockPoint.up * 8, ForceMode2D.Impulse);
+        currentProp.body.AddForce(lockPoint.up * 8 * Player.Scale(), ForceMode2D.Impulse);
         currentProp = null;
-        player.body.AddForce(new Vector2(lockPoint.up.x * -3, lockPoint.up.y * -5), ForceMode2D.Impulse);
+        player.body.AddForce(new Vector2(lockPoint.up.x * -3, lockPoint.up.y * -5) * Player.Scale(), ForceMode2D.Impulse);
     }
 
     public Prop TryGrab()
     {
-        RaycastHit2D hit = Physics2D.CircleCast(lockPoint.position, 0.5f, lockPoint.up, 0.3f, propLayerMask.value);
+        RaycastHit2D hit = Physics2D.CircleCast(lockPoint.position, Player.Scale() * 0.5f, lockPoint.up, Player.Scale() * 0.3f, propLayerMask.value);
         GameObject hitObj = hit.collider ? hit.collider.gameObject : null;
 
         if (hitObj)
