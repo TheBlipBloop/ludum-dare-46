@@ -15,7 +15,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
 
     public AnimationCurve XAnimationCurve;
-    public float speed = 6;
+    /// <summary>
+    /// 0 == no air control, 1 == full control
+    /// </summary>
+    public float airControl = 0.6f;
+    public float moveSpeed = 6;
     public float jumpPower = 3;
     public float maxCoyoteTime = 0.2f;
 
@@ -32,10 +36,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (onGround)
-        {
-            xMove = Input.GetKey(KeyCode.D) ? 1 : (Input.GetKey(KeyCode.A) ? -1 : 0);
-        }
+        xMove = (Input.GetKey(KeyCode.D) ? 1 : (Input.GetKey(KeyCode.A) ? -1 : 0)) * (canJump() ? 1 : airControl);
+
 
         jumpMove = Input.GetKeyDown(KeyCode.W) && canJump();
     }
@@ -62,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move(float x, ref bool jump)
     {
-        body.velocity = new Vector2(x * speed, body.velocity.y);
+        body.velocity = new Vector2(x * moveSpeed, body.velocity.y);
 
         if (jump)
         {
