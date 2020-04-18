@@ -72,6 +72,7 @@ public class PlayerArms : MonoBehaviour
         currentProp.EnableBody();
         currentProp.body.AddForce(lockPoint.up * 8, ForceMode2D.Impulse);
         currentProp = null;
+        player.body.AddForce(new Vector2(lockPoint.up.x * -3, lockPoint.up.y * -5), ForceMode2D.Impulse);
     }
 
     public Prop TryGrab()
