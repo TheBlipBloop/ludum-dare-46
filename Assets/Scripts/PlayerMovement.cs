@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
     {
         xMoveInput = (Input.GetKey(moveXPositive) ? 1 : (Input.GetKey(moveXNegitive) ? -1 : 0)) * (canJump() ? 1 : airControl);
 
+
         if (Input.GetKey(moveXNegitive) && Input.GetKey(moveXPositive))
         {
 
@@ -72,8 +73,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(jump) && canJump())
         {
-
-            Jump();
+            bool b = Physics2D.Raycast(transform.position, 100 * feetPoint.right * transform.localScale.x, Mathf.Abs(transform.localScale.x / 2f), floorLayer.value);
+            // Debug.Log(b);
+            if (!b)
+            {
+                Jump();
+            }
         }
 
         // dustEmissionModule.rateOverDistanceMultiplier = Mathf.Lerp(dustEmissionModule.rateOverDistanceMultiplier, Mathf.Abs(xMoveInput) > 0.5f ? 1 : 0, Time.deltaTime);
@@ -99,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            curCoyoteTime = 0;
+            curCoyoteTime = Mathf.MoveTowards(curCoyoteTime, 0, Time.fixedDeltaTime * 16);
         }
     }
 

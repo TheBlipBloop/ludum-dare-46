@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
     float lastScale;
 
-    void OnEnable()
+    void Awake()
     {
         instance = this;
         startingSpeedMax = movement.maxMoveSpeed;

@@ -4,18 +4,9 @@ using UnityEngine;
 
 public class Beast : MonoBehaviour
 {
+    public float eatRange;
 
-    public Mouth[] mouths = new Mouth[1];
-
-    [System.Serializable]
-    public class Mouth
-    {
-        public Transform point;
-
-        public float range;
-    }
-
-    Mouth currentMouth;
+    public Transform upperMouth;
 
     static HashSet<Prop> allProps = new HashSet<Prop>();
 
@@ -33,26 +24,24 @@ public class Beast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int currentMouthID = 0; currentMouthID < mouths.Length; currentMouthID++)
+        List<Prop> p = new List<Prop>(allProps);
+
+        foreach (var curProp in p)
         {
-            currentMouth = mouths[currentMouthID];
-
-            List<Prop> p = new List<Prop>(allProps);
-
-            foreach (var curProp in p)
+            if (Mathf.Sqrt(Meth.distanceSq(curProp.transform.position, transform.position)) < transform.localScale.x * eatRange)
             {
-                if (Mathf.Sqrt(Meth.distanceSq(curProp.transform.position, currentMouth.point.position)) < transform.lossyScale.x * 1.28f)
-                {
-                    ConsumeProp(curProp);
-                }
+                ConsumeProp(curProp);
             }
         }
+
+        upperMouth.localEulerAngles = Vector3.LerpUnclamped(upperMouth.localEulerAngles, new Vector3(0, 0, 0), Time.deltaTime * 3);
     }
 
     public void ConsumeProp(Prop prop)
     {
         Player.instance.score += 1.35f * (prop.body ? prop.body.mass : prop.rb_mass);
         Player.instance.collectedPeices++;
+        upperMouth.localEulerAngles = new Vector3(0, 0, Random.Range(50f, 70f));
         Destroy(prop.gameObject);
     }
 }

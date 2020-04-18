@@ -20,6 +20,36 @@ public class Prop : MonoBehaviour
         Beast.RemoveProp(this);
     }
 
+    void Start()
+    {
+        if (CanGrab())
+        {
+            if (body)
+            {
+                body.bodyType = RigidbodyType2D.Dynamic;
+            }
+            spriteRenderer.color = Color.LerpUnclamped(spriteRenderer.color, Color.white, Time.deltaTime * 4);
+
+            if (body == null)
+            {
+                gameObject.layer = 11;
+            }
+            else
+            {
+                gameObject.layer = 9;
+            }
+        }
+        else
+        {
+            if (body)
+            {
+                body.bodyType = RigidbodyType2D.Static;
+            }
+            spriteRenderer.color = Color.LerpUnclamped(spriteRenderer.color, Color.black, Time.deltaTime * 3);
+            gameObject.layer = 8;
+        }
+    }
+
     void Update()
     {
         if (CanGrab())
