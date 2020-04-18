@@ -49,6 +49,7 @@ public class PlayerArms : MonoBehaviour
     public void UnGrab()
     {
         if (!currentProp) { return; }
+        currentProp.transform.parent = null;
         currentProp.EnableBody();
         currentProp.body.AddForce(lockPoint.up * 8, ForceMode2D.Impulse);
         currentProp = null;
