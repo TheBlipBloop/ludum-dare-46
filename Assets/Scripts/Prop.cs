@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class Prop : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Rigidbody2D body;
+    public float rb_mass;
+    public float rb_drag;
+    public float rb_angularDrag;
+
+    public void DisableBody()
     {
-        
+        rb_mass = body.mass;
+        rb_drag = body.drag;
+        rb_angularDrag = body.angularDrag;
+        gameObject.layer = 10;
+        Destroy(body);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void EnableBody()
     {
-        
+        body = gameObject.AddComponent<Rigidbody2D>();
+        body.mass = rb_mass;
+        body.drag = rb_drag;
+        body.angularDrag = rb_angularDrag;
+        gameObject.layer = 9;
     }
 }
