@@ -6427,7 +6427,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "<color=#FFB3B3>FEED THE BEAST</color> \n<size=100>(to keep it alive, of
+  m_Text: "<color=#FFB3B3>FEED THE BEAST</color> \n<size=60>(to keep it alive, of
     course. As it grows, you grow) </size>"
 --- !u!222 &1055769718
 CanvasRenderer:
