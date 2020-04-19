@@ -94,7 +94,7 @@ PrefabInstance:
     - target: {fileID: 3382545240570621068, guid: 1d621dc75972249be9982b4660883760,
         type: 3}
       propertyPath: m_Name
-      value: PropS_1 Variant 1
+      value: PropS_1 Variant 1 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5988517406772247524, guid: 1d621dc75972249be9982b4660883760,
         type: 3}
@@ -104,17 +104,17 @@ PrefabInstance:
     - target: {fileID: 5988517406772247524, guid: 1d621dc75972249be9982b4660883760,
         type: 3}
       propertyPath: m_Mass
-      value: 0.12
+      value: 0.088
       objectReference: {fileID: 0}
     - target: {fileID: 7826985374106923001, guid: 1d621dc75972249be9982b4660883760,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.053
+      value: 4.35
       objectReference: {fileID: 0}
     - target: {fileID: 7826985374106923001, guid: 1d621dc75972249be9982b4660883760,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.035449
+      value: -3.177
       objectReference: {fileID: 0}
     - target: {fileID: 7826985374106923001, guid: 1d621dc75972249be9982b4660883760,
         type: 3}

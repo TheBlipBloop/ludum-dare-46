@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
 
     float lastScale;
 
-    void OnEnable()
+    void Awake()
     {
         instance = this;
         startingSpeedMax = movement.maxMoveSpeed;
@@ -36,13 +37,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scale = Mathf.Clamp(score * 1, 0.15f, 0.5f + (collectedPeices / 10f));
+        scale = Mathf.Clamp(score * 1, 0.15f, 0.5f + (collectedPeices / 8f));
 
         if (lastScale != scale)
         {
             lastScale = scale;
             transform.localScale = new Vector3(scale * Mathf.Sign(transform.localScale.x), scale, 1);
-            transform.position += transform.up * scale / 2f;
+            // transform.position += transform.up * scale / 2f;
         }
 
         movement.jumpPower = startingJump * scale + 0.3f;
@@ -52,6 +53,11 @@ public class Player : MonoBehaviour
         movement.moveSpeedDecayAmount = startingSpeedDecay * scale;
 
         Physics2D.gravity = new Vector2(0, -9.81f * scale);
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     public static float Score() { return instance.score; }
