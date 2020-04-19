@@ -53,6 +53,7 @@ public class PlayerArms : MonoBehaviour
             armParent.eulerAngles = new Vector3(0, 0, Mathf.LerpAngle(armParent.eulerAngles.z, targetAngle, Time.deltaTime * 3));
         }
 
+        // Time.timeScale = Mathf.MoveTowards(Time.time, currentProp && !player.onGround ? 0.8f : 1, Time.deltaTime * 3);
     }
 
     public void Grab()

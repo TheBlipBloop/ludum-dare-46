@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Beast : MonoBehaviour
 {
@@ -36,6 +37,12 @@ public class Beast : MonoBehaviour
             {
                 ConsumeProp(curProp);
             }
+        }
+
+
+        if (allProps.Count < 1 && Meth.distance(Player.instance.transform.position, transform.position) < Player.Scale() * eatRange)
+        {
+            SceneManager.LoadScene(nextLevel);
         }
 
         // if (allProps.Count < 1 && Meth.distance(Player.instance.transform.position, transform.position) < Player.Scale() * eatRange)

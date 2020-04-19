@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public float maxCoyoteTime = 0.2f;
 
     float curCoyoteTime = 0;
-    bool onGround;
+    public bool onGround;
 
     bool lastOnGround;
 
@@ -93,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
                 jumpDust.Play();
             }
         }
+
     }
 
     public bool canJump()
