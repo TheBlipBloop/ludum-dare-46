@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
     float accelerationX;
     float lastVX;
 
-    float timeSinceOnGround;
+    float timeOnGround;
 
     // Start is called before the first frame update
     void Start()
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
         // movementDust.enableEmission = xMoveInput != 0;
 
-        if (Mathf.Abs(accelerationX) > 1f && onGround)
+        if ((Mathf.Abs(accelerationX) > 1f && onGround) || (onGround && timeOnGround < 0.5f))
         // if (Mathf.Abs(body.velocity.x) < maxMoveSpeed && xMoveInput != 0)
         {
             movementDustEmision.rateOverTime = 75;
@@ -163,17 +163,17 @@ public class PlayerMovement : MonoBehaviour
         // dustEmissionModule.rateOverDistanceMultiplier = Mathf.Lerp(dustEmissionModule.rateOverDistanceMultiplier, Mathf.Abs(xMoveInput) > 0.5f ? 1 : 0, Time.deltaTime);
         Time.fixedDeltaTime = Time.smoothDeltaTime;
 
-        if (onGround != lastOnGround)
-        {
-            lastOnGround = onGround;
+        // if (onGround != lastOnGround)
+        // {
+        //     lastOnGround = onGround;
 
-            if (onGround && timeSinceOnGround > 1)
-            {
-                // jumpDust.Play();
-            }
-        }
+        //     if (onGround && timeOnGround > 1)
+        //     {
+        //         // jumpDust.Play();
+        //     }
+        // }
 
-        if (onGround) { timeSinceOnGround = 0; } else { timeSinceOnGround += Time.deltaTime; }
+        if (!onGround) { timeOnGround = 0; } else { timeOnGround += Time.deltaTime; }
 
     }
 
