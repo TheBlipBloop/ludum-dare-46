@@ -7,7 +7,11 @@ public class MildlyWackAssMenu : MonoBehaviour
 {
     public string firstLevel = "Game 0";
 
-    float switchTime;
+    float switchTime = -1;
+
+    bool switching;
+
+    float switchTimer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -18,15 +22,27 @@ public class MildlyWackAssMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (switchTime > Time.time)
+        if (switching)
+        {
+            switchTimer += Time.deltaTime;
+        }
+
+        if (switchTimer > 2f)
         {
             switchTime = Mathf.Infinity;
+            SceneManager.LoadScene(firstLevel);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+        {
             SceneManager.LoadScene(firstLevel);
         }
     }
 
     public void StartGameOrSomthing()
     {
-        switchTime = Time.time + 2.5f;
+        switching = true;
+
+        // switchTime = Time.time + 5f;
     }
 }
