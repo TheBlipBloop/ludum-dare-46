@@ -47,6 +47,9 @@ TextureImporter:
   - first:
       213: -6461691276141929177
     second: PropsM_14
+  - first:
+      213: -1686473125309840695
+    second: PropsM_15
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -445,7 +448,7 @@ TextureImporter:
         width: 3
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -453,6 +456,27 @@ TextureImporter:
       bones: []
       spriteID: ceb5fe2020ace8967bdf7e50631da5b7
       internalID: -6461691276141929177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PropsM_15
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 0
+        width: 2
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d1fbda7c960a57459753683f030b0a6
+      internalID: -1686473125309840695
       vertices: []
       indices: 
       edges: []

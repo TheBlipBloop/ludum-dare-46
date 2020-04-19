@@ -15,6 +15,8 @@ public class Beast : MonoBehaviour
 
     public AudioSource consumeSound;
 
+    float sceneSwitchTime = -1;
+
     public static void AddProp(Prop prop)
     {
         allProps.Add(prop);
@@ -41,7 +43,13 @@ public class Beast : MonoBehaviour
         }
 
 
-        if (allProps.Count < 1 && Meth.distance(Player.instance.transform.position, transform.position) < Player.Scale() * eatRange)
+        if (allProps.Count < 1 && Meth.distance(Player.instance.transform.position, transform.position) < Player.Scale() * eatRange && Player.instance.movement.spriteRenderer.enabled)
+        {
+            sceneSwitchTime = Time.time + 4;
+            Player.instance.movement.spriteRenderer.enabled = false;
+        }
+
+        if (Time.time < sceneSwitchTime)
         {
             SceneManager.LoadScene(nextLevel);
         }
