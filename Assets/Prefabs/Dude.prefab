@@ -5244,7 +5244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &943171778
 Transform:
   m_ObjectHideFlags: 0
@@ -5827,7 +5827,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 256
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -6092,7 +6092,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 35
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -6145,7 +6145,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 90
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9976,7 +9976,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -10496,7 +10496,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5817123467239818462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.061, y: -0.729, z: 0}
+  m_LocalPosition: {x: -0.061, y: -0.562, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 943171778}
@@ -10993,13 +10993,21 @@ MonoBehaviour:
   frameInterval: 0.03125
   spriteRenderer: {fileID: 5817123468730175507}
   idle: {fileID: 21300000, guid: 30c2d9b8860c07323bf01abb28036e22, type: 3}
+  jumpFrame: {fileID: 21300000, guid: d3ec886862c18f20db9a6a6b51f99b42, type: 3}
+  jumpLandFrame: {fileID: 21300000, guid: 357e94183a432add5a14e93914d7e5df, type: 3}
   run:
-  - {fileID: 5093805065695527893, guid: edd53ce91f4d6c451a495dcea53abe77, type: 3}
-  - {fileID: -3175794986656664552, guid: edd53ce91f4d6c451a495dcea53abe77, type: 3}
-  - {fileID: -8113808312053907869, guid: edd53ce91f4d6c451a495dcea53abe77, type: 3}
-  - {fileID: -6038227664746221510, guid: edd53ce91f4d6c451a495dcea53abe77, type: 3}
-  - {fileID: -7272566214906744046, guid: edd53ce91f4d6c451a495dcea53abe77, type: 3}
-  - {fileID: 6583226823274940346, guid: edd53ce91f4d6c451a495dcea53abe77, type: 3}
+  - {fileID: 2672556468354734543, guid: 22a69af187b244f0d9d72c15a4a8053c, type: 3}
+  - {fileID: 8899552691737302574, guid: 22a69af187b244f0d9d72c15a4a8053c, type: 3}
+  - {fileID: -4777601778188441170, guid: 22a69af187b244f0d9d72c15a4a8053c, type: 3}
+  - {fileID: 6274992640481724040, guid: 22a69af187b244f0d9d72c15a4a8053c, type: 3}
+  - {fileID: -1196758269635478086, guid: 22a69af187b244f0d9d72c15a4a8053c, type: 3}
+  - {fileID: -7426630528828272987, guid: 22a69af187b244f0d9d72c15a4a8053c, type: 3}
+  - {fileID: -6360357102117391834, guid: 22a69af187b244f0d9d72c15a4a8053c, type: 3}
+  - {fileID: 5037346677114828787, guid: 22a69af187b244f0d9d72c15a4a8053c, type: 3}
+  - {fileID: 2230831774711159446, guid: 22a69af187b244f0d9d72c15a4a8053c, type: 3}
+  - {fileID: 92643430038540838, guid: 22a69af187b244f0d9d72c15a4a8053c, type: 3}
+  - {fileID: 3582855451683534544, guid: 22a69af187b244f0d9d72c15a4a8053c, type: 3}
+  - {fileID: 6858798037916263245, guid: 22a69af187b244f0d9d72c15a4a8053c, type: 3}
 --- !u!50 &5817123468730175511
 Rigidbody2D:
   serializedVersion: 4

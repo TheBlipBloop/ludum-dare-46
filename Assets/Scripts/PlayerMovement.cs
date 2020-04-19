@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Effects")]
     public ParticleSystem movementDust;
+
+    ParticleSystem.EmissionModule movementDustEmision;
     public ParticleSystem jumpDust;
 
     [Header("Janky Animation")]
@@ -61,18 +63,40 @@ public class PlayerMovement : MonoBehaviour
 
     public Sprite[] run;
 
+    float accelerationX;
+    float lastVX;
+
+    float timeSinceOnGround;
+
     // Start is called before the first frame update
     void Start()
     {
+        movementDustEmision = movementDust.emission;
         // dustEmissionModule = movementDust.emission;
         nextAnimTime = Time.time + frameInterval;
     }
 
     void Update()
     {
+        accelerationX = (lastVX - body.velocity.x) / Time.deltaTime;
+
+        lastVX = body.velocity.x;
+
         xMoveInput = (Input.GetKey(moveXPositive) ? 1 : (Input.GetKey(moveXNegitive) ? -1 : 0)) * (canJump() ? 1 : airControl);
 
         // movementDust.enableEmission = xMoveInput != 0;
+
+        if (Mathf.Abs(accelerationX) > 1f && onGround)
+        // if (Mathf.Abs(body.velocity.x) < maxMoveSpeed && xMoveInput != 0)
+        {
+            movementDustEmision.rateOverTime = 75;
+            // movementDustEmision.rateOverTimeMultiplier = Mathf.MoveTowards(movementDustEmision.rateOverTimeMultiplier, 1, Time.deltaTime * 3);
+        }
+        else
+        {
+            movementDustEmision.rateOverTime = 0;
+        }
+
 
         if (Time.time > nextAnimTime)
         {
@@ -143,11 +167,13 @@ public class PlayerMovement : MonoBehaviour
         {
             lastOnGround = onGround;
 
-            if (onGround)
+            if (onGround && timeSinceOnGround > 1)
             {
-                jumpDust.Play();
+                // jumpDust.Play();
             }
         }
+
+        if (onGround) { timeSinceOnGround = 0; } else { timeSinceOnGround += Time.deltaTime; }
 
     }
 
