@@ -286,8 +286,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164941395}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.51, z: 0}
-  m_LocalScale: {x: 1000, y: 15, z: 1}
+  m_LocalPosition: {x: 0, y: -7.189, z: 0}
+  m_LocalScale: {x: 1000, y: 100.71001, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 24
@@ -6962,7 +6962,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.636, y: -2.636}
+  m_AnchoredPosition: {x: 6.636, y: -2.79}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1566335434
@@ -6996,7 +6996,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Hold <color=#FFB3B3>LEFT MOUSE</color> to \ngrab and throw \nWHITE objects "
+  m_Text: "Hold <color=#FFB3B3>LEFT MOUSE</color> to \ngrab a WHITE object\nrelease
+    to throw"
 --- !u!222 &1566335435
 CanvasRenderer:
   m_ObjectHideFlags: 0

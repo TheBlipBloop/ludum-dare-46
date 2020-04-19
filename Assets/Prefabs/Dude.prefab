@@ -16039,8 +16039,8 @@ MonoBehaviour:
   - {fileID: 6858798037916263245, guid: 22a69af187b244f0d9d72c15a4a8053c, type: 3}
   jumpSound: {fileID: 5587986707788459460}
   accSound: {fileID: 7431743134272962999}
-  jumpOffsetP: 0
-  jumpOffsetN: 0
+  jumpOffsetP: 0.026
+  jumpOffsetN: 0.026
 --- !u!50 &5817123468730175511
 Rigidbody2D:
   serializedVersion: 4
