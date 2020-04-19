@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -52,6 +53,11 @@ public class Player : MonoBehaviour
         movement.moveSpeedDecayAmount = startingSpeedDecay * scale;
 
         Physics2D.gravity = new Vector2(0, -9.81f * scale);
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     public static float Score() { return instance.score; }

@@ -7190,7 +7190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1834887934
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7207,7 +7207,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.048, y: -2.75}
+  m_AnchoredPosition: {x: 2.854, y: -2.398}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1834887935
@@ -7241,7 +7241,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Use <color=#FFB3B3>A</color> and <color=#FFB3B3>D</color> to move
+  m_Text: "Use <color=#FFB3B3>R</color> to restart \n<size=60>(when you mess up again)</size>"
 --- !u!222 &1834887936
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7602,6 +7602,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 337408719, guid: 4ae65e34383bdefa7887b1faa16daeb6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0568
+      objectReference: {fileID: 0}
+    - target: {fileID: 337408721, guid: 4ae65e34383bdefa7887b1faa16daeb6, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 337408721, guid: 4ae65e34383bdefa7887b1faa16daeb6, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 65
+      objectReference: {fileID: 0}
     - target: {fileID: 5817123468730175504, guid: 4ae65e34383bdefa7887b1faa16daeb6,
         type: 3}
       propertyPath: m_Name

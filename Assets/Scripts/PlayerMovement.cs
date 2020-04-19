@@ -30,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
 
     float curCoyoteTime = 0;
     bool onGround;
+
+    bool lastOnGround;
+
     public float xMoveInput;
     bool jumpMove;
 
@@ -38,9 +41,9 @@ public class PlayerMovement : MonoBehaviour
 
     public KeyCode jump = KeyCode.W;
 
-    // [Header("Effects")]
-    // public ParticleSystem movementDust;
-    // public ParticleSystem.EmissionModule dustEmissionModule;
+    [Header("Effects")]
+    public ParticleSystem movementDust;
+    public ParticleSystem jumpDust;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         xMoveInput = (Input.GetKey(moveXPositive) ? 1 : (Input.GetKey(moveXNegitive) ? -1 : 0)) * (canJump() ? 1 : airControl);
+
+        // movementDust.enableEmission = xMoveInput != 0;
 
 
         if (Input.GetKey(moveXNegitive) && Input.GetKey(moveXPositive))
@@ -78,6 +83,16 @@ public class PlayerMovement : MonoBehaviour
 
         // dustEmissionModule.rateOverDistanceMultiplier = Mathf.Lerp(dustEmissionModule.rateOverDistanceMultiplier, Mathf.Abs(xMoveInput) > 0.5f ? 1 : 0, Time.deltaTime);
         Time.fixedDeltaTime = Time.smoothDeltaTime;
+
+        if (onGround != lastOnGround)
+        {
+            lastOnGround = onGround;
+
+            if (onGround)
+            {
+                jumpDust.Play();
+            }
+        }
     }
 
     public bool canJump()
