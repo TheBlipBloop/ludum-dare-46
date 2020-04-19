@@ -27,6 +27,6 @@ public class MildlyWackAssMenu : MonoBehaviour
 
     public void StartGameOrSomthing()
     {
-        switchTime = Time.time + 1.5f;
+        switchTime = Time.time + 2.5f;
     }
 }
