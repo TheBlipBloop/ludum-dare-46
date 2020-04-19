@@ -45,10 +45,27 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem movementDust;
     public ParticleSystem jumpDust;
 
+    [Header("Janky Animation")]
+
+    public float frameInterval = 1f / 32f;
+
+    float nextAnimTime;
+    Sprite nextFrame;
+    public SpriteRenderer spriteRenderer;
+
+    public Sprite idle;
+    public Sprite jumpFrame;
+    public Sprite jumpLandFrame;
+
+    int currentRun;
+
+    public Sprite[] run;
+
     // Start is called before the first frame update
     void Start()
     {
         // dustEmissionModule = movementDust.emission;
+        nextAnimTime = Time.time + frameInterval;
     }
 
     void Update()
@@ -56,6 +73,44 @@ public class PlayerMovement : MonoBehaviour
         xMoveInput = (Input.GetKey(moveXPositive) ? 1 : (Input.GetKey(moveXNegitive) ? -1 : 0)) * (canJump() ? 1 : airControl);
 
         // movementDust.enableEmission = xMoveInput != 0;
+
+        if (Time.time > nextAnimTime)
+        {
+            spriteRenderer.sprite = nextFrame;
+
+            if (onGround)
+            {
+                if (xMoveInput == 0)
+                {
+                    nextFrame = idle;
+                    nextAnimTime = Time.time + frameInterval;
+                    currentRun = 0;
+                }
+                else
+                {
+                    currentRun++;
+                    currentRun = currentRun % run.Length;
+                    nextFrame = run[currentRun];
+                    nextAnimTime = Time.time + frameInterval;
+                }
+            }
+            else
+            {
+                if (body.velocity.y > 0)
+                {
+                    nextFrame = jumpFrame;
+                    nextAnimTime = Time.time + frameInterval;
+                    currentRun = 0;
+                }
+                else
+                {
+                    nextFrame = jumpLandFrame;
+                    nextAnimTime = Time.time + frameInterval;
+                    currentRun = 0;
+
+                }
+            }
+        }
 
 
         if (Input.GetKey(moveXNegitive) && Input.GetKey(moveXPositive))
