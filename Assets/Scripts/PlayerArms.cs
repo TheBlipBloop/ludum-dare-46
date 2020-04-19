@@ -91,10 +91,7 @@ public class PlayerArms : MonoBehaviour
         currentProp = null;
         player.body.AddForce(new Vector2(lockPoint.up.x * -3, lockPoint.up.y * -5) * Player.Scale(), ForceMode2D.Impulse);
 
-        if (player.canJump())
-        {
-            player.body.AddForce(new Vector2(0, 5f) * Player.Scale(), ForceMode2D.Impulse);
-        }
+        // player.body.AddForce(new Vector2(0, 5f) * Player.Scale(), ForceMode2D.Impulse);
     }
 
     public Prop TryGrab()

@@ -11,6 +11,12 @@ TextureImporter:
   - first:
       213: -6631346980465589999
     second: PropsS_2
+  - first:
+      213: -5602094702157139689
+    second: PropsS_3
+  - first:
+      213: -7651769120706161749
+    second: PropsS_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -121,7 +127,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c49d01ac569e12af48580506e8a9aa44
+      spriteID: 885c1c40ca980c894b9b5dce2bb18a6f
       internalID: -136845384287810812
       vertices: []
       indices: 
@@ -142,7 +148,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee1fc380d4b53adf89b9d391b5c03590
+      spriteID: a6d6f4cf6a61e50608b17012911e4c79
       internalID: -3108174599501802794
       vertices: []
       indices: 
@@ -163,8 +169,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1f3f06e1a961910097d184ffcc21256
+      spriteID: 6bae7601a352c1082a1fad9992706a92
       internalID: -6631346980465589999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PropsS_3
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fa6bb609eaafe7679412f92f81c4703
+      internalID: -5602094702157139689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PropsS_4
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 299c54de13e87e7f6b86a0e4140a4e8d
+      internalID: -7651769120706161749
       vertices: []
       indices: 
       edges: []
