@@ -32,21 +32,21 @@ public class Beast : MonoBehaviour
 
         foreach (var curProp in p)
         {
-            if (Mathf.Sqrt(Meth.distance(curProp.transform.position, transform.position)) < Player.Scale() * eatRange)
+            if (Meth.distance(curProp.transform.position, transform.position) < Player.Scale() * eatRange)
             {
                 ConsumeProp(curProp);
             }
         }
 
-        if (allProps.Count < 1 && Meth.distance(Player.instance.transform.position, transform.position) < Player.Scale() * eatRange)
-        {
-            // Player.instance.transform.position = Vector3.MoveTowards(Player.instance.transform.position, transform.position, Time.deltaTime * 18);
-            // PlayerCamera.instance.overrideZoomAmount = 0.01f;
-        }
-        else
-        {
-            PlayerCamera.instance.overrideZoomAmount = -1f;
-        }
+        // if (allProps.Count < 1 && Meth.distance(Player.instance.transform.position, transform.position) < Player.Scale() * eatRange)
+        // {
+        //     // Player.instance.transform.position = Vector3.MoveTowards(Player.instance.transform.position, transform.position, Time.deltaTime * 18);
+        //     // PlayerCamera.instance.overrideZoomAmount = 0.01f;
+        // }
+        // else
+        // {
+        //     PlayerCamera.instance.overrideZoomAmount = -1f;
+        // }
 
         upperMouth.localEulerAngles = Vector3.LerpUnclamped(upperMouth.localEulerAngles, new Vector3(0, 0, 0), Time.deltaTime * 3);
     }

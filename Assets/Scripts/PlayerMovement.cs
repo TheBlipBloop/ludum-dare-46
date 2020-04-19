@@ -73,12 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(jump) && canJump())
         {
-            bool b = Physics2D.Raycast(transform.position, 100 * feetPoint.right * transform.localScale.x, Mathf.Abs(transform.localScale.x / 2f), floorLayer.value);
-            // Debug.Log(b);
-            if (!b)
-            {
-                Jump();
-            }
+            Jump();
         }
 
         // dustEmissionModule.rateOverDistanceMultiplier = Mathf.Lerp(dustEmissionModule.rateOverDistanceMultiplier, Mathf.Abs(xMoveInput) > 0.5f ? 1 : 0, Time.deltaTime);
@@ -96,7 +91,16 @@ public class PlayerMovement : MonoBehaviour
 
         Move(xMoveInput, Time.fixedDeltaTime);
 
-        onGround = Physics2D.CircleCast(feetPoint.position, feetSize, feetPoint.up * -1, 0, floorLayer.value);
+
+
+        // onGround = Physics2D.Raycast(feetPoint.position + (feetPoint.right * 0.05f), feetPoint.up * -1, Player.Scale() / 3, floorLayer.value);
+        // onGround = Physics2D.Raycast(feetPoint.position + (feetPoint.right * -0.05f), feetPoint.up * -1, Player.Scale() / 3, floorLayer.value);
+
+        onGround = Physics2D.Raycast(feetPoint.position + (feetPoint.right * 0.02f), feetPoint.up * -1, Player.Scale() / 3, floorLayer.value) || Physics2D.Raycast(feetPoint.position + (feetPoint.right * -0.02f), feetPoint.up * -1, Player.Scale() / 3, floorLayer.value);
+
+        // onGround = Physics2D.CircleCast(feetPoint.position, 0.06f, feetPoint.up * -1, Player.Scale() / 3, floorLayer.value);
+        // onGround = Physics2D.Raycast(feetPoint.position, feetPoint.up * -1, Player.Scale() / 3, floorLayer.value);
+        // onGround = Physics2D.CircleCast(feetPoint.position, feetSize, feetPoint.up * -1, 0, floorLayer.value);
 
         if (!onGround)
         {
