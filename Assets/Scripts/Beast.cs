@@ -13,6 +13,7 @@ public class Beast : MonoBehaviour
 
     static HashSet<Prop> allProps = new HashSet<Prop>();
 
+    public AudioSource consumeSound;
 
     public static void AddProp(Prop prop)
     {
@@ -64,5 +65,6 @@ public class Beast : MonoBehaviour
         Player.instance.collectedPeices++;
         upperMouth.localEulerAngles = new Vector3(0, 0, Random.Range(50f, 70f));
         Destroy(prop.gameObject);
+        consumeSound.PlayOneShot(consumeSound.clip);
     }
 }

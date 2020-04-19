@@ -68,6 +68,12 @@ public class PlayerMovement : MonoBehaviour
 
     float timeOnGround;
 
+    public AudioSource jumpSound;
+    public AudioSource accSound;
+
+    public float jumpOffsetP;
+    public float jumpOffsetN;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,13 +96,28 @@ public class PlayerMovement : MonoBehaviour
         // if (Mathf.Abs(body.velocity.x) < maxMoveSpeed && xMoveInput != 0)
         {
             movementDustEmision.rateOverTime = 75;
+            // accSound.volume = Mathf.Lerp(accSound.volume, 0.08f, Time.deltaTime * 12);
+            // accSound.pitch = Mathf.Lerp(accSound.volume, 1.2f, Time.deltaTime * 16f);
+
             // movementDustEmision.rateOverTimeMultiplier = Mathf.MoveTowards(movementDustEmision.rateOverTimeMultiplier, 1, Time.deltaTime * 3);
+
         }
         else
         {
+            if (xMoveInput != 0 && onGround)
+            {
+                // accSound.volume = Mathf.Lerp(accSound.volume, 0.05f, Time.deltaTime * 8);
+                // accSound.pitch = Mathf.Lerp(accSound.volume, 1.2f, Time.deltaTime * 10);
+            }
+            else
+            {
+                // accSound.volume = Mathf.Lerp(accSound.volume, 0f, Time.deltaTime * 12);
+                // accSound.pitch = Mathf.Lerp(accSound.volume, 0.8f, Time.deltaTime * 10);
+            }
             movementDustEmision.rateOverTime = 0;
         }
 
+        accSound.volume = onGround && xMoveInput != 0 ? 0.085f : Mathf.MoveTowards(accSound.volume, 0, Time.deltaTime * 4);
 
         if (Time.time > nextAnimTime)
         {
@@ -113,7 +134,9 @@ public class PlayerMovement : MonoBehaviour
                 else
                 {
                     currentRun++;
+
                     currentRun = currentRun % run.Length;
+
                     nextFrame = run[currentRun];
                     nextAnimTime = Time.time + frameInterval;
                 }
@@ -193,7 +216,12 @@ public class PlayerMovement : MonoBehaviour
         // onGround = Physics2D.Raycast(feetPoint.position + (feetPoint.right * 0.05f), feetPoint.up * -1, Player.Scale() / 3, floorLayer.value);
         // onGround = Physics2D.Raycast(feetPoint.position + (feetPoint.right * -0.05f), feetPoint.up * -1, Player.Scale() / 3, floorLayer.value);
 
-        onGround = Physics2D.Raycast(feetPoint.position + (feetPoint.right * 0.02f), feetPoint.up * -1, Player.Scale() / 3, floorLayer.value) || Physics2D.Raycast(feetPoint.position + (feetPoint.right * -0.02f), feetPoint.up * -1, Player.Scale() / 3, floorLayer.value);
+        onGround = Physics2D.Raycast(feetPoint.position + (feetPoint.right * jumpOffsetP), feetPoint.up * -1, Player.Scale() / 3, floorLayer.value) || Physics2D.Raycast(feetPoint.position + (feetPoint.right * -jumpOffsetN), feetPoint.up * -1, Player.Scale() / 3, floorLayer.value);
+
+        Debug.DrawRay(feetPoint.position + (feetPoint.right * jumpOffsetP), feetPoint.up * -1, Color.red);
+        Debug.DrawRay(feetPoint.position + (feetPoint.right * -jumpOffsetN), feetPoint.up * -1, Color.magenta);
+
+        // onGround = Physics2D.Raycast(feetPoint.position + (feetPoint.right * 0.02f), feetPoint.up * -1, Player.Scale() / 3, floorLayer.value) || Physics2D.Raycast(feetPoint.position + (feetPoint.right * -0.02f), feetPoint.up * -1, Player.Scale() / 3, floorLayer.value);
 
         // onGround = Physics2D.CircleCast(feetPoint.position, 0.06f, feetPoint.up * -1, Player.Scale() / 3, floorLayer.value);
         // onGround = Physics2D.Raycast(feetPoint.position, feetPoint.up * -1, Player.Scale() / 3, floorLayer.value);
@@ -211,6 +239,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        jumpSound.PlayOneShot(jumpSound.clip);
         curCoyoteTime = maxCoyoteTime + 1;
         body.velocity = new Vector2(body.velocity.x, jumpPower);
     }

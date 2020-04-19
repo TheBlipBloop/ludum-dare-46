@@ -21,6 +21,11 @@ public class PlayerArms : MonoBehaviour
 
     Vector2 grabbedOffset;
 
+    public AudioSource grabEffect;
+    public AudioSource ungrabEffect;
+
+    public AudioSource moveArmEffect;
+
     // Update is called once per frame
     void Update()
     {
@@ -67,9 +72,15 @@ public class PlayerArms : MonoBehaviour
 
         if (!targetProp.CanGrab()) { return; }
 
+
+
         targetProp.DisableBody();
 
         targetProp.transform.parent = lockPoint;
+
+        grabEffect.transform.position = targetProp.transform.position;
+        grabEffect.PlayOneShot(grabEffect.clip);
+
         currentProp = targetProp;
 
         // RaycastHit2D hit = Physics2D.Raycast(armParent.position, lockPoint.up, 0.5f, grabbedPropLayerMask.value);
@@ -89,9 +100,13 @@ public class PlayerArms : MonoBehaviour
         currentProp.EnableBody();
         currentProp.body.velocity = lockPoint.up * 8 * Player.Scale();
         // currentProp.body.AddForce(lockPoint.up * 4 * Player.Scale(), ForceMode2D.Impulse);
+
+        ungrabEffect.PlayOneShot(ungrabEffect.clip);
+        ungrabEffect.transform.position = currentProp.transform.position;
+
+
         currentProp = null;
         player.body.AddForce(new Vector2(lockPoint.up.x * -3, lockPoint.up.y * -5) * Player.Scale(), ForceMode2D.Impulse);
-
         // player.body.AddForce(new Vector2(0, 5f) * Player.Scale(), ForceMode2D.Impulse);
     }
 
